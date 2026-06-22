@@ -284,7 +284,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
                             <i class="ti ti-clock" style="font-size:15px"></i>
                             <span style="font-size:12px">Cupos limitados — <strong>primeros 100</strong> Socios Fundadores.</span>
                         </div>
-                        <form id="founderForm" action="https://formspree.io/f/mwvwnred" method="POST">
+                        <form id="founderForm" action="/api/founder" method="POST">
                             <div class="row g-2 mb-2">
                                 <div class="col-6">
                                     <label class="form-label-vx">Nombre *</label>
@@ -377,13 +377,28 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
             e.preventDefault();
             var btn = form.querySelector('[type="submit"]');
             var orig = btn.innerHTML;
-            btn.innerHTML = '<i class="ti ti-loader"></i> Enviando...';
+            btn.innerHTML = '<i class="ti ti-loader-2 ti-spin"></i> Enviando...';
             btn.disabled = true;
             try {
-                var res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-                if (res.ok) { view.style.display = 'none'; success.classList.add('show'); }
-                else { btn.innerHTML = orig; btn.disabled = false; alert('Error al enviar. Escríbenos a hola@vitrinexo.com'); }
-            } catch(err) { btn.innerHTML = orig; btn.disabled = false; alert('Error de conexión. Intenta de nuevo.'); }
+                var res = await fetch('/api/founder', {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                var data = await res.json();
+                if (res.ok || data.ok) {
+                    view.style.display = 'none';
+                    success.classList.add('show');
+                } else {
+                    btn.innerHTML = orig;
+                    btn.disabled = false;
+                    alert('Error al enviar. Escríbenos a hola@vitrinexo.com');
+                }
+            } catch(err) {
+                btn.innerHTML = orig;
+                btn.disabled = false;
+                alert('Error de conexión. Intenta de nuevo.');
+            }
         });
     })();
     </script>
