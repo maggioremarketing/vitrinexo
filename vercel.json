@@ -1,0 +1,18 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/login", "destination": "/login/index.html" },
+    { "source": "/registro", "destination": "/login/index.html" },
+    { "source": "/recuperar-contrasena", "destination": "/recuperar-contrasena/index.html" },
+    { "source": "/landing-4dinner", "destination": "/landing-4dinner/index.html" },
+    { "source": "/blog", "destination": "/blog/index.html" },
+    { "source": "/directorio", "destination": "/directorio/index.html" },
+    { "source": "/4dinner", "destination": "/4dinner/index.html" },
+    { "source": "/comunidad-out2b", "destination": "/comunidad-out2b/index.html" },
+    { "source": "/comunidad-woman", "destination": "/comunidad-woman/index.html" },
+    { "source": "/comunidad-senior", "destination": "/comunidad-senior/index.html" },
+    { "source": "/privacidad", "destination": "/privacidad/index.html" },
+    { "source": "/terminos", "destination": "/terminos/index.html" }
+  ]
+}
